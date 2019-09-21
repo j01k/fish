@@ -5,29 +5,46 @@
       type="image/png" 
       href="https://raw.githubusercontent.com/j01k/fish/master/fish.png">
 <style>
-a:link {
+.button {
+  background-color: white;
+  border: none;
   color: cyan;
-  background-color: transparent;
+  padding: 10px 20px;
+  text-align: center;
   text-decoration: none;
-}
-a:visited {
-  color: cyan;
-  background-color: transparent;
-  text-decoration: none;
-}
-a:hover {
-  color: white;
-  background-color: cyan;
-  text-decoration: bold;
-}
-a:active {
-  color: pink;
-  background-color: transparent;
-  text-decoration: underline;
+  display: inline-block;
+  font-size: 50px;
+  margin: 5px 5px;
+  cursor: pointer;
 }
 </style>
+<title>CrystalFishLabs</title>
 </head>
 <body>
-<h1><a href="https://clicktotweet.com/4MzX0" target="_blank" rel="noopener">&gt;&lt;&gt;</a></h1>
+
+<button class="button" title="50% catch rate"onclick="bait()">&gt;&lt;&gt;</button>
+
+<p id="fish"></p>
+
+<script>
+var fishCaught = 0;
+function fish() {
+	if (getRandomInt(100) > 50) {
+		return "You catch a fish. You have caught " + fishCaught+++ " total.";
+    }
+    else {
+    	return "You fail to catch a fish. You have caught " + fishCaught + " total.";
+    }
+    	
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+
+function bait() {
+	document.getElementById("fish").innerHTML = fish();
+}
+</script>
 </body>
 </html>
