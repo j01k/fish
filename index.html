@@ -28,12 +28,16 @@
 
 <script>
 var fishCaught = 0;
+var attempts = 0;
 function fish() {
 	if (getRandomInt(100) > 50) {
-		return "You catch a fish. You have caught " + fishCaught+++ " total.";
+		return "You catch a fish. You have caught " + fishCaught+++ " out of " + attempts++
+				+ " attempts with a success rate of " + fishCaught/attempts;
+			
     }
     else {
-    	return "You fail to catch a fish. You have caught " + fishCaught + " total.";
+    	return "You fail to catch a fish. You have caught " + fishCaught + " out of " + attempts++
+	    	+ " attempts with a success rate of " + fishCaught/attempts;
     }
     	
 }
