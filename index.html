@@ -17,16 +17,39 @@
   margin: 5px 5px;
   cursor: pointer;
 }
+.roll {
+  background-color: white;
+  border: 1px solid black;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  cursor: pointer;
+}
 </style>
 <title>CrystalFishLabs</title>
 </head>
 <body>
-
 <button class="button" title="50% catch rate"onclick="bait()">&gt;&lt;&gt;</button>
 
 <p id="fish"></p>
 
+<form id="rateinput">
+  Rate: <input type="text" name="rate" value="">
+</form>
+
+<form id="kcinput">
+  Desired Attempts: <input type="text" name="kc" value="">
+</form>
+
+<button class="roll" onclick="go()">Roll</button>
+
+<p id="results"></p>
+<p id="results2"></p>
+
 <script>
+//fishFunctions
 var fishCaught = 0;
 var attempts = 0;
 function fish() {
@@ -42,13 +65,59 @@ function fish() {
     	
 }
 
+function bait() {
+	document.getElementById("fish").innerHTML = fish();
+}
+
+//roll functions
+var attempts = 1;
+var scenarios = 1;
+
+function getData(formName) {
+  var x = document.getElementById(formName);
+  var text = "";
+  var i;
+  for (i = 0; i < x.length ;i++) {
+    text += x.elements[i].value;
+  }
+  return text;
+}
+
+function chance(rate) {
+	while (getRandomInt(rate) != (rate - 1)) {
+    	attempts++;
+    }
+    scenarios++;
+    return attempts;
+}
+
+function whatIf(rate, kc) {
+	while (attempts <= kc) {
+    	chance(rate);
+        if (attempts >= kc) {
+        	return attempts;
+         }
+         else {
+         	attempts = 0;
+         }
+     }
+ }
+        
+function go() {
+	attempts = 1;
+    scenarios = 1;
+    document.getElementById("results").innerHTML = "It took you " + chance(getData("rateinput")) + " attempts!";
+    if (getData("kcinput") > 0) {
+    	document.getElementById("results2").innerHTML = "It took you" + whatIf(getData("rateinput"), 			getData("kcinput")) + " attempts and " + scenarios + " pets were caught in the process.";
+    }
+    
+}
+
+//misc functions 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
-function bait() {
-	document.getElementById("fish").innerHTML = fish();
-}
 </script>
 </body>
 </html>
