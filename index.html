@@ -1,132 +1,62 @@
 <!DOCTYPE html>
 <html>
 <head profile="http://www.crystalfishlabs.com">
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFSWBHDMS8"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-ZFSWBHDMS8');
 </script>
+
 <link rel="icon" 
       type="image/png" 
       href="https://raw.githubusercontent.com/j01k/fish/master/fish.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
-.button {
-  background-color: white;
-  border: none;
-  color: cyan;
-  padding: 10px 20px;
+p {
   text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 50px;
-  margin: 5px 5px;
-  cursor: pointer;
-}
-.roll {
-  background-color: white;
-  border: 1px solid black;
-  color: black;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 24px;
-  cursor: pointer;
+  font-size: 60px;
+  margin-top: 0px;
 }
 </style>
-<title>CrystalFishLabs</title>
 </head>
 <body>
-<button class="button" title="50% catch rate"onclick="bait()">&gt;&lt;&gt;</button>
 
-<p id="fish"></p>
-
-<form id="rateinput">
-  Rate: <input type="text" name="rate" value="">
-</form>
-
-<form id="kcinput">
-  Desired Attempts: <input type="text" name="kc" value="">
-</form>
-
-<button class="roll" onclick="go()">Roll</button>
-
-<p id="results"></p>
-<p id="results2"></p>
+<p id="demo"></p>
 
 <script>
-//fishFunctions
-var fishCaught = 0;
-var attempts = 0;
-function fish() {
-	if (getRandomInt(100) > 50) {
-		return "You catch a fish. You have caught " + fishCaught+++ " out of " + attempts++
-				+ " attempts with a success rate of " + fishCaught/attempts;
-			
-    }
-    else {
-    	return "You fail to catch a fish. You have caught " + fishCaught + " out of " + attempts++
-	    	+ " attempts with a success rate of " + fishCaught/attempts;
-    }
-    	
-}
+// Set the date we're counting down to
+var countDownDate = new Date("Dec 5, 2019 15:37:25").getTime();
 
-function bait() {
-	document.getElementById("fish").innerHTML = fish();
-}
+// Update the count down every 1 second
+var x = setInterval(function() {
 
-//roll functions
-var attempts = 1;
-var scenarios = 1;
-
-function getData(formName) {
-  var x = document.getElementById(formName);
-  var text = "";
-  var i;
-  for (i = 0; i < x.length ;i++) {
-    text += x.elements[i].value;
-  }
-  return text;
-}
-
-function chance(rate) {
-	while (getRandomInt(rate) != (rate - 1)) {
-    	attempts++;
-    }
-    scenarios++;
-    return attempts;
-}
-
-function whatIf(rate, kc) {
-	while (attempts <= kc) {
-    	chance(rate);
-        if (attempts >= kc) {
-        	return attempts;
-         }
-         else {
-         	attempts = 0;
-         }
-     }
- }
-        
-function go() {
-	attempts = 1;
-    scenarios = 1;
-    document.getElementById("results").innerHTML = "It took you " + chance(getData("rateinput")) + " attempts!";
-    if (getData("kcinput") > 0) {
-    	document.getElementById("results2").innerHTML = "It took you" + whatIf(getData("rateinput"), 			getData("kcinput")) + " attempts and " + scenarios + " pets were caught in the process.";
-    }
+  // Get today's date and time
+  var now = new Date().getTime();
     
-}
-
-//misc functions 
-function getRandomInt(max) {
-  return Math.floor(Math.random() * Math.floor(max));
-}
-
+  // Find the distance between now and the count down date
+  var distance = countDownDate - now;
+    
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+  // Output the result in an element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+    
+  // If the count down is over, write some text 
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
 </script>
+
 </body>
 </html>
