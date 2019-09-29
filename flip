@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head profile="http://www.crystalfishlabs.com">
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ZFSWBHDMS8"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-ZFSWBHDMS8');
+</script>
+
+<link rel="icon" 
+      type="image/png" 
+      href="https://raw.githubusercontent.com/j01k/fish/master/fish.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<img src="https://raw.githubusercontent.com/j01k/fish/master/fishingspot2.gif" height="100" width="100" onclick="go()">
+
+<p id="results"></p>
+
+<script>
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
+function go() {
+	var percent = getRandomInt(1000);    
+    if (percent == 420) {
+    	document.getElementById("results").innerHTML = "Smoke that right now. " + percent;
+    } 
+	else if (percent >= 500) {
+    document.getElementById("results").innerHTML = "&gt&lt&gt " + percent;
+    }  
+    else {
+    	document.getElementById("results").innerHTML = "No fish " + percent;
+    }
+    
+}
+</script>
+</body>
+</html>
