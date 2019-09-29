@@ -15,48 +15,33 @@
       type="image/png" 
       href="https://raw.githubusercontent.com/j01k/fish/master/fish.png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-p {
-  text-align: center;
-  font-size: 60px;
-  margin-top: 0px;
-}
-</style>
 </head>
 <body>
+<img src="https://raw.githubusercontent.com/j01k/fish/master/fishingspot2.gif" height="100" width="100" onclick="go()">
 
-<p id="demo"></p>
+<p id="results"></p>
 
 <script>
-// Set the date we're counting down to
-var countDownDate = new Date("Dec 5, 2019 15:37:25").getTime();
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
+}
 
-// Update the count down every 1 second
-var x = setInterval(function() {
-
-  // Get today's date and time
-  var now = new Date().getTime();
+function go() {
+	var percent = getRandomInt(1000);
     
-  // Find the distance between now and the count down date
-  var distance = countDownDate - now;
+    if (percent == 420) {
+    	document.getElementById("results").innerHTML = "Smoke that right now. " + percent;
+    }
     
-  // Time calculations for days, hours, minutes and seconds
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+	else if (percent >= 500) {
+    document.getElementById("results").innerHTML = "&gt&lt&gt " + percent;
+    }
     
-  // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
+    else {
+    	document.getElementById("results").innerHTML = "No fish " + percent;
+    }
     
-  // If the count down is over, write some text 
-  if (distance < 0) {
-    clearInterval(x);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+}
 </script>
-
 </body>
 </html>
