@@ -7,23 +7,37 @@
 
 <img hidden id="gameFrame" src="https://raw.githubusercontent.com/j01k/fish/master/422.png" alt="Gameframe" usemap="#gamemap" height="503" width="765">
 <map name="gamemap">
-  <area shape="circle" coords="285,203,10" onclick="catchFish()">
+  <area shape="circle" coords="306,228,25" onclick="gameTicks(catchFish, 2600)">
 </map>
 
-<video hidden id="fishingAni" height="50" width="50" controls loop autoplay>
+<img hidden id="trout" src="https://oldschool.runescape.wiki/images/archive/4/4a/20130918074609%21Leaping_trout.png?4b22a" height="50" width="50">
+
+<img hidden id="salmon" src="https://oldschool.runescape.wiki/images/0/06/Leaping_salmon.png?a9116" height="50" width="50">
+
+<img hidden id="sturgeon" src="https://oldschool.runescape.wiki/images/f/f6/Leaping_sturgeon.png?bc085" height="50" width="50">
+
+<video hidden id="fishingAni" height="50" width="50" loop autoplay>
   <source src="https://raw.githubusercontent.com/j01k/fish/master/429.mp4" type='video/mp4'>
-  <onclick=
+  <onclick="gameTicks(catchFish, 2600)">
 </video>
 
+<button onclick="gameTicks(catchFish, 2400)">click</button>
 <script>
-var spot1x = 285
-var spot1y = 203
+var spot1x = 285;
+var spot1y = 203;
+var tick;
+var xpos;
+var ypos;
 window.onload = fishing()
 window.onload = function() {
   var c = document.getElementById("pond");
   var ctx = c.getContext("2d");
-  var img = document.getElementById("gameFrame");
-  ctx.drawImage(img, 0, 0);
+  var pondbg = document.getElementById("gameFrame");
+  ctx.drawImage(pondbg, 0, 0);
+}
+
+function getRandomInt(max) {
+  return Math.floor(Math.random() * Math.floor(max));
 }
 
 function fishing() {
@@ -31,11 +45,63 @@ function fishing() {
 	var c = document.getElementById("pond");
 	var ctx = c.getContext("2d");
 	var i;
-    i = window.setInterval(function() {ctx.drawImage(v,spot1x,spot1y,50,50)},20)  
+    i = window.setInterval(function() {ctx.drawImage(v,spot1x,spot1y,50,50)},20)
+}
+
+
+function inventory(pos) {
+    if (pos < 28) {
+    	xpos = 560 + (invCol(pos) * 50);
+        ypos = 219 + (invRow(pos) * 50);
+    }
+    else {
+    	clearInterval(tick);
+    }   	  	
+}
+
+function gameTicks(action, tickLength) {
+	tick = setInterval(action, tickLength);
+}
+
+function invCol(pos) {
+	while (pos < 4) {
+    	pos = pos - 4;
+    }
+    return pos;
+}
+
+function invRow(pos) {
+	var colCount = 1;
+	while (pos < 4) {
+    	pos = pos - 4;
+        colCount++;
+    }
+    return colCount;
 }
 
 function catchFish() {
-
+    var fsh = getRandomInt(3);
+    var pos = 1;
+    inventory(pos);
+    pos++;
+    	if (fsh = 0) {
+    		var img = document.getElementById("trout");
+			var c = document.getElementById("pond");
+			var ctx = c.getContext("2d");
+        	ctx.drawImage(img, xpos, ypos);
+		}
+    	else if (fsh = 1) {
+    		var img = document.getElementById("salmon");
+			var c = document.getElementById("pond");
+			var ctx = c.getContext("2d");
+        	ctx.drawImage(img, xpos, ypos);
+		}
+    	else if (fsh = 2) {
+    		var img = document.getElementById("sturgeon");
+			var c = document.getElementById("pond");
+			var ctx = c.getContext("2d");
+        	ctx.drawImage(img, xpos, ypos);
+		}
 }
 </script>
 </body>
