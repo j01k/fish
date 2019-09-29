@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <body>
 <canvas id="pond" width="765" height="503">
 </canvas>
@@ -11,11 +12,13 @@
 
 <video hidden id="fishingAni" height="50" width="50" autoplay>
   <source src="https://im2.ezgif.com/tmp/ezgif-2-70bc1a8176ed.mp4" type='video/mp4'>
+  <onclick=
 </video>
 
-<button id="start" onclick="fishing()">click</button>
-
 <script>
+var spot1x = 280
+var spot1y = 210
+window.onload = fishing()
 window.onload = function() {
   var c = document.getElementById("pond");
   var ctx = c.getContext("2d");
@@ -28,15 +31,7 @@ function fishing() {
 	var c = document.getElementById("pond");
 	var ctx = c.getContext("2d");
 	var i;
-	i = window.setInterval(function() {ctx.drawImage(v,275,200,50,50)},20)  
-}
-
-function fishing2() {
-	var v = document.getElementById("fishingAni");
-	var c = document.getElementById("pond");
-	var ctx = c.getContext("2d");
-	var i;
-	i = window.setInterval(function() {ctx.drawImage(v,300,50,50,50)},20)
+    i = window.setInterval(function() {ctx.drawImage(v,spot1x,spot1y,50,50)},20)  
 }
 </script>
 </body>
