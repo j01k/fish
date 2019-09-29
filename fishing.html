@@ -7,17 +7,17 @@
 
 <img hidden id="gameFrame" src="https://raw.githubusercontent.com/j01k/fish/master/422.png" alt="Gameframe" usemap="#gamemap" height="503" width="765">
 <map name="gamemap">
-  <area shape="circle" coords="299,226,10" onclick="fishing()">
+  <area shape="circle" coords="285,203,10" onclick="catchFish()">
 </map>
 
-<video hidden id="fishingAni" height="50" width="50" autoplay>
+<video hidden id="fishingAni" height="50" width="50" controls loop autoplay>
   <source src="https://raw.githubusercontent.com/j01k/fish/master/429.mp4" type='video/mp4'>
   <onclick=
 </video>
 
 <script>
-var spot1x = 280
-var spot1y = 210
+var spot1x = 285
+var spot1y = 203
 window.onload = fishing()
 window.onload = function() {
   var c = document.getElementById("pond");
@@ -32,6 +32,10 @@ function fishing() {
 	var ctx = c.getContext("2d");
 	var i;
     i = window.setInterval(function() {ctx.drawImage(v,spot1x,spot1y,50,50)},20)  
+}
+
+function catchFish() {
+
 }
 </script>
 </body>
