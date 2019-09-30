@@ -36,13 +36,13 @@ var tick;
 var xpos;
 var ypos;
 var pos = 1;
-window.onload = fishing()
 window.onload = function() {
   var c = document.getElementById("pond");
   var ctx = c.getContext("2d");
   var pondbg = document.getElementById("gameFrame");
   ctx.drawImage(pondbg, 0, 0);
 }
+window.onload = fishing()
 
 function showCoords(event) {
 	var x = event.clientX;
