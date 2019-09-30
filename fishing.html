@@ -2,32 +2,34 @@
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <body>
-<canvas id="pond" width="765" height="503">
-</canvas>
 
-<img hidden id="gameFrame" src="https://raw.githubusercontent.com/j01k/fish/master/422.png" alt="Gameframe" usemap="#gamemap" height="503" width="765">
+<img hidden id="gameFrame" src="https://raw.githubusercontent.com/j01k/fish/master/422.png" height="503" width="765" usemap="#gamemap">
 <map name="gamemap">
-  <area shape="circle" coords="306,228,25" onclick="gameTicks(catchFish, 2600)">
+	<area shape="circle" coords="306,228,20">
 </map>
 
-<img hidden id="trout" src="https://oldschool.runescape.wiki/images/archive/4/4a/20130918074609%21Leaping_trout.png?4b22a" height="50" width="50">
-
-<img hidden id="salmon" src="https://oldschool.runescape.wiki/images/0/06/Leaping_salmon.png?a9116" height="50" width="50">
-
-<img hidden id="sturgeon" src="https://oldschool.runescape.wiki/images/f/f6/Leaping_sturgeon.png?bc085" height="50" width="50">
+<canvas id="pond" width="765" height="503" onclick="showCoords(event)">
+</canvas>
+<img hidden id="trout" src="https://raw.githubusercontent.com/j01k/fish/master/leaping_trout.png" height="40" width="40">
+<img hidden id="salmon" src="https://raw.githubusercontent.com/j01k/fish/master/Leaping_salmon.png" height="40" width="40">
+<img hidden id="sturgeon" src="https://raw.githubusercontent.com/j01k/fish/master/Leaping_sturgeon.png" height="40" width="40">
 
 <video hidden id="fishingAni" height="50" width="50" loop autoplay>
   <source src="https://raw.githubusercontent.com/j01k/fish/master/429.mp4" type='video/mp4'>
-  <onclick="gameTicks(catchFish, 2600)">
 </video>
 
-<button onclick="gameTicks(catchFish, 2400)">click</button>
+
+<p id="demo" ></p>
+
 <script>
 var spot1x = 285;
 var spot1y = 203;
+var clicked = false;
+var cooldown = false;
 var tick;
 var xpos;
 var ypos;
+var pos = 1;
 window.onload = fishing()
 window.onload = function() {
   var c = document.getElementById("pond");
@@ -35,6 +37,32 @@ window.onload = function() {
   var pondbg = document.getElementById("gameFrame");
   ctx.drawImage(pondbg, 0, 0);
 }
+
+function showCoords(event) {
+	var x = event.clientX;
+    var y = event.clientY;
+    if (pos >= 28) {
+        return clearInterval(tick);
+    }
+    if (clicked == true || cooldown == true) {
+    	cooldown = false;
+    	return clearInterval(tick);
+    }
+    if (clicked == true || cooldown == false) {
+    	cooldown = true;
+        return gameTicks(catchFish, 2400);
+    }
+    clicked = true;
+    if ((560 < x && x < 744) && (209 < y && y < 442)) {
+    	return dropFish(x, y);
+    }
+    if ((300 < x && x < 350) && (210 < y && y < 260)) {
+    	return gameTicks(catchFish, 2400);
+    }
+    var coords = "X coords: " + x + ", Y coords: " + y;
+  	document.getElementById("demo").innerHTML = coords;
+}
+
 
 function getRandomInt(max) {
   return Math.floor(Math.random() * Math.floor(max));
@@ -50,9 +78,128 @@ function fishing() {
 
 
 function inventory(pos) {
-    if (pos < 28) {
-    	xpos = 560 + (invCol(pos) * 50);
-        ypos = 219 + (invRow(pos) * 50);
+	if (pos <= 28) {
+		switch (pos) {
+    		case 1:
+        		xpos = 555;
+            	ypos = 205;
+            	break;
+        	case 2:
+        		xpos = 595;
+            	ypos = 205;
+            	break;
+            case 3:
+        		xpos = 635;
+            	ypos = 205;
+            	break;
+           	case 4:
+        		xpos = 675;
+            	ypos = 205;
+            	break;
+                
+           	case 5:
+        		xpos = 555;
+            	ypos = 240;
+            	break;
+        	case 6:
+        		xpos = 595;
+            	ypos = 240;
+            	break;
+            case 7:
+        		xpos = 635;
+            	ypos = 240;
+            	break;
+           	case 8:
+        		xpos = 675;
+            	ypos = 240;
+            	break;
+           
+            case 9:
+        		xpos = 555;
+            	ypos = 275;
+            	break;
+        	case 10:
+        		xpos = 595;
+            	ypos = 275;
+            	break;
+            case 11:
+        		xpos = 635;
+            	ypos = 275;
+            	break;
+           	case 12:
+        		xpos = 675;
+            	ypos = 275;
+            	break;
+                
+            case 13:
+        		xpos = 555;
+            	ypos = 310;
+            	break;
+        	case 14:
+        		xpos = 595;
+            	ypos = 310;
+            	break;
+            case 15:
+        		xpos = 635;
+            	ypos = 310;
+            	break;
+           	case 16:
+        		xpos = 675;
+            	ypos = 310;
+            	break;
+                
+            case 17:
+        		xpos = 555;
+            	ypos = 345;
+            	break;
+        	case 18:
+        		xpos = 595;
+            	ypos = 345;
+            	break;
+            case 19:
+        		xpos = 635;
+            	ypos = 345;
+            	break;
+           	case 20:
+        		xpos = 675;
+            	ypos = 345;
+            	break;
+                
+            case 21:
+        		xpos = 555;
+            	ypos = 380;
+            	break;
+        	case 22:
+        		xpos = 595;
+            	ypos = 380;
+            	break;
+            case 23:
+        		xpos = 635;
+            	ypos = 380;
+            	break;
+           	case 24:
+        		xpos = 675;
+            	ypos = 380;
+            	break;
+                
+            case 25:
+        		xpos = 555;
+            	ypos = 415;
+            	break;
+        	case 26:
+        		xpos = 595;
+            	ypos = 415;
+            	break;
+            case 27:
+        		xpos = 635;
+            	ypos = 415;
+            	break;
+           	case 28:
+        		xpos = 675;
+            	ypos = 415;
+            	break;
+           
+        }
     }
     else {
     	clearInterval(tick);
@@ -63,40 +210,24 @@ function gameTicks(action, tickLength) {
 	tick = setInterval(action, tickLength);
 }
 
-function invCol(pos) {
-	while (pos < 4) {
-    	pos = pos - 4;
-    }
-    return pos;
-}
-
-function invRow(pos) {
-	var colCount = 1;
-	while (pos < 4) {
-    	pos = pos - 4;
-        colCount++;
-    }
-    return colCount;
-}
-
 function catchFish() {
     var fsh = getRandomInt(3);
-    var pos = 1;
     inventory(pos);
     pos++;
-    	if (fsh = 0) {
+    clicked = false;
+    	if (fsh == 0) {
     		var img = document.getElementById("trout");
 			var c = document.getElementById("pond");
 			var ctx = c.getContext("2d");
         	ctx.drawImage(img, xpos, ypos);
 		}
-    	else if (fsh = 1) {
+    	else if (fsh == 1) {
     		var img = document.getElementById("salmon");
 			var c = document.getElementById("pond");
 			var ctx = c.getContext("2d");
         	ctx.drawImage(img, xpos, ypos);
 		}
-    	else if (fsh = 2) {
+    	else if (fsh == 2) {
     		var img = document.getElementById("sturgeon");
 			var c = document.getElementById("pond");
 			var ctx = c.getContext("2d");
