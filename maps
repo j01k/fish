@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<p id="maplist"></p>
+
+<script>
+var maps = ["Airfield", "Asylum", "Makin Day", "Breach", "Battery", "Castle", "Cliffside", "Courtyard", "Dome", "Downfall", "Hangar", "Bonzai", "Subway", "Nightfire", "Outskirts", "Docks", "Revolution", "Roundhouse", "Corrosion", "Castle", "Makin", "Seelow", "Kneedeep", "Upheaval", "Dome"];
+var text = "";
+var i;
+for (i = 0; i < maps.length; i++) {
+  text += maps[i] + "<br>";
+}
+document.getElementById("maplist").innerHTML = text;
+</script>
+
+</body>
+</html>
